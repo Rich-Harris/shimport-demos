@@ -15,3 +15,4 @@ fs.writeFileSync('index.html', html
 	}\n\t</ul>`));
 
 fs.writeFileSync('shimport.js', fs.readFileSync('node_modules/shimport/index.js'));
+fs.writeFileSync('shimport.dev.js', fs.readFileSync('node_modules/shimport/index.dev.js'));

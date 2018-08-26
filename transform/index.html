@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
 	<title>Transform</title>
 	<link rel="stylesheet" href="/styles.css">
 
@@ -35,10 +36,14 @@
 			background-color: #f9f9f9;
 		}
 
-		#time {
+		#status {
 			float: right;
 			font-size: 14px;
 			color: #999;
+		}
+
+		#status.error {
+			color: red;
 		}
 
 		@media (min-width: 800px) {
@@ -58,9 +63,44 @@
 			<textarea id="output" readonly></textarea>
 		</div>
 
-		<span id="time"></span>
+		<span id="status"></span>
 	</main>
 
-	<script src="../shimport.js" data-main="main.js"></script>
+	<script src="../shimport.dev.js"></script>
+	<script>
+		(function() {
+			const input = document.querySelector('#input');
+			const output = document.querySelector('#output');
+			const status = document.querySelector('#status');
+
+			input.value = `
+			import foo from './foo.js';
+			import { a, b } from './bar.js';
+			import * as baz from './baz.js';
+
+			export const answer = 42;
+			`.trim().replace(/^\t+/gm, '');
+
+			function update() {
+				try {
+					console.profile('transform');
+					const start = window.performance.now();
+					const transformed = __shimport__.transform(input.value, 'demo.js');
+					const duration = window.performance.now() - start;
+					console.profileEnd('transform');
+
+					output.value = transformed;
+					status.textContent = `transformed in ${duration.toFixed(2)}ms`;
+					status.classList.remove('error');
+				} catch (err) {
+					status.textContent = err.message;
+					status.classList.add('error');
+				}
+			}
+
+			input.addEventListener('input', update);
+			update();
+		}());
+	</script>
 </body>
 </html>
