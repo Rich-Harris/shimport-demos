@@ -13,3 +13,5 @@ fs.writeFileSync('index.html', html
 	.replace(/<ul>([\s\S]*)<\/ul>/, `<ul>${
 		dirs.map(dir => `\n\t\t<li><a href="${dir}/">${dir}</a></li>`).join('')
 	}\n\t</ul>`));
+
+fs.writeFileSync('shimport.js', fs.readFileSync('node_modules/shimport/index.js'));
