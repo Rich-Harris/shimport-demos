@@ -1,4 +1,3 @@
 .DS_Store
-!node_modules
-node_modules/*
-!node_modules/shimport
+node_modules
+yarn.lock
