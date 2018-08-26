@@ -83,11 +83,9 @@
 
 			function update() {
 				try {
-					console.profile('transform');
 					const start = window.performance.now();
 					const transformed = __shimport__.transform(input.value, 'demo.js');
 					const duration = window.performance.now() - start;
-					console.profileEnd('transform');
 
 					output.value = transformed;
 					status.textContent = `transformed in ${duration.toFixed(2)}ms`;
