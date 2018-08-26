@@ -1,0 +1,13 @@
+{
+  "name": "shimport-demo",
+  "scripts": {
+    "start": "serve .",
+    "build": "node build.js"
+  },
+  "devDependencies": {
+    "serve": "^10.0.0"
+  },
+  "dependencies": {
+    "shimport": "^0.0.1"
+  }
+}

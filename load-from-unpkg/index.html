@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Load from unpkg.com</title>
+	<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+	<h1>Load from unpkg.com</h1>
+
+	<main>
+		<p>loading <a href="https://unpkg.com/lodash-es/range.js">unpkg.com/lodash-es/range.js</a>...</p>
+	</main>
+
+	<script>
+		var __s = document.createElement('script');
+		try {
+			new Function('import("")');
+			__s.type = 'module';
+			__s.src = './main.js';
+		} catch (e) {
+			__s.src = 'https://unpkg.com/shimport'
+			__s.dataset.main = './main.js';
+		}
+
+		document.head.appendChild(__s);
+	</script>
+</body>
+</html>
