@@ -15,17 +15,18 @@
 	</main>
 
 	<script>
-		var __s = document.createElement('script');
-		try {
-			new Function('import("")');
-			__s.type = 'module';
-			__s.src = './main.js';
-		} catch (e) {
-			__s.src = '../shimport.js'
-			__s.dataset.main = './main.js';
+		function shimport(src) {
+			try {
+				new Function('import("' + src + '")')();
+			} catch (e) {
+				var s = document.createElement('script');
+				s.src = '../shimport.js'
+				s.dataset.main = src;
+				document.head.appendChild(s);
+			}
 		}
 
-		document.head.appendChild(__s);
+		shimport('./main.js');
 	</script>
 </body>
 </html>

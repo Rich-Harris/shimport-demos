@@ -8,6 +8,6 @@
     "serve": "^10.0.0"
   },
   "dependencies": {
-    "shimport": "^0.0.2"
+    "shimport": "^0.0.5"
   }
 }
